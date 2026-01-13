@@ -10,3 +10,8 @@ Personne* creerPersonne(string nom,string prenom,int naissance,int sexe,Personne
     nv->sexe = sexe;
     nv->conjoint = conjoint;
 }
+
+void mariage(Personne* p1,Personne* p2){
+    p1-> conjoint = p2;
+    p2 -> conjoint = p1;
+}

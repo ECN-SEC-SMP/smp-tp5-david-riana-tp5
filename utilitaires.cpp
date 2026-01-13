@@ -2,6 +2,7 @@
 #include "utilitaires.h"
 #include <iostream>
 #include <cassert>
+#include <cmath>
 using namespace std;
 
 //QUESTION 1
@@ -90,11 +91,44 @@ bool sontFrereSoeur(Personne* p1, Personne* p2){
     }
 }
 
-// Question 6
+// QUESTION 6
 bool estAncetre (Personne* a, Personne* b)
 {
-    assert()
     // Si personne b est l'ancetre de personne a
-    //if ()
-    return true;
+    bool flagEstAncetreMere = false;
+    bool flagEstAncetrePere = false;
+    if (a->pere == nullptr && a->mere == nullptr)
+    {
+        return false;
+    } 
+
+    // TODO: Faire avec les tests avec a->pere == nullptr ou a->mere == nullptr
+    else if(memePersonne(a->pere, b)){
+        return true;
+    }
+    else if (memePersonne(a->mere, b)){
+        return true;
+    } 
+    else{
+        flagEstAncetreMere = estAncetre(a->mere, b);
+        flagEstAncetrePere = estAncetre(a->pere, b);
+        if (flagEstAncetreMere || flagEstAncetrePere){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 }
+
+
+//QUESTION 7
+int nbGenerations (Personne* pers){
+    if (pers == nullptr){
+        return 0;
+    }
+    else{
+        return 1+ max(nbGenerations(pers->pere),nbGenerations(pers->mere));
+    }
+}
+    

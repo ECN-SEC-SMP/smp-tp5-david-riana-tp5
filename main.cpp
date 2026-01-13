@@ -24,7 +24,7 @@ int main() {
     cout << "Question 5" << endl;
     bool b;
     b = memePersonne(riana,riana);
-    cout<<"riana et riana sont les mêmes personnes?"<<endl;
+    cout<<"riana et riana sont les mêmes personnes? "<<endl;
     if (b){
         cout<<"true"<<endl;
     }
@@ -58,5 +58,15 @@ int main() {
     else{
         cout << "false" << endl;
     }
+
+    // ===== Test question 6 =====
+    cout << "Test question 6" << endl;
+    
+    bool flagEstAncetre = estAncetre(riana, david);
+    cout << std::boolalpha << flagEstAncetre << endl;
+
+    // ===== Test question 7 =====
+    cout << "Test question 7" << endl;
+    cout << "Il y a " << nbGenerations(riana) << " générations."<< endl;
     return 0;
 }

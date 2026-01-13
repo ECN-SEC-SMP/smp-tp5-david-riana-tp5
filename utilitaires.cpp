@@ -1,6 +1,9 @@
 #include "type_def.h"
+#include "utilitaires.h"
 #include <iostream>
 using namespace std;
+
+//QUESTION 1
 
 Personne* creerPersonne(string nom,string prenom,int naissance,int sexe,Personne* conjoint){
     Personne* nv = new Personne;
@@ -11,7 +14,14 @@ Personne* creerPersonne(string nom,string prenom,int naissance,int sexe,Personne
     nv->conjoint = conjoint;
 }
 
+//QUESTION 2
 void mariage(Personne* p1,Personne* p2){
     p1-> conjoint = p2;
     p2 -> conjoint = p1;
+}
+
+//QUESTION 3 
+
+void affichage (Personne* p){
+
 }

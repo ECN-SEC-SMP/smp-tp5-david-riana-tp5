@@ -8,5 +8,5 @@ struct Personne
     string prenom;
     int naissance;
     int sexe;
-    personne* conjoint;
+    Personne* conjoint;
 };

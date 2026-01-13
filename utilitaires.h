@@ -10,3 +10,4 @@ bool memePersonne(Personne* p1,Personne* p2);
 bool sontFrereSoeur(Personne* p1, Personne* p2);
 bool estAncetre (Personne* a, Personne* b);
 int nbGenerations (Personne* pers);
+int nbMembres (Personne* p);

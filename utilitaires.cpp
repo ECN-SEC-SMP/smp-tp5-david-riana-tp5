@@ -121,7 +121,6 @@ bool estAncetre (Personne* a, Personne* b)
     }
 }
 
-
 //QUESTION 7
 int nbGenerations (Personne* pers){
     if (pers == nullptr){
@@ -132,3 +131,21 @@ int nbGenerations (Personne* pers){
     }
 }
     
+
+//QUESTION 8
+
+int nbMembres (Personne* p){
+    if(p == nullptr){
+        return 0;
+    } 
+    else{
+        return 1 + nbMembres(p->pere) + nbMembres(p->mere);
+    }
+}
+
+// QUESTION 9
+
+// bool mariagePossible(Personne* a, Personne* b)
+// {
+//  if ()
+// }

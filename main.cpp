@@ -62,11 +62,17 @@ int main() {
     // ===== Test question 6 =====
     cout << "Test question 6" << endl;
     
-    bool flagEstAncetre = estAncetre(riana, david);
-    cout << std::boolalpha << flagEstAncetre << endl;
+    cout << std::boolalpha << estAncetre(riana, david) << endl;
+    cout << std::boolalpha << estAncetre(david, riana) << endl;
+
 
     // ===== Test question 7 =====
     cout << "Test question 7" << endl;
     cout << "Il y a " << nbGenerations(riana) << " générations."<< endl;
+
+    // ===== Test question 8 =====
+    cout << "Test question 8" << endl;
+    cout << "Il y a " << nbMembres(riana) << " personnes."<< endl;
+    
     return 0;
 }

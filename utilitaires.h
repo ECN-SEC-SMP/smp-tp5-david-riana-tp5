@@ -6,3 +6,6 @@ using namespace std;
 Personne* creerPersonne(string nom,string prenom,int naissance,int sexe,Personne* conjoint);
 void mariage(Personne* p1,Personne* p2);
 void affichage (Personne* p);
+bool memePersonne(Personne* p1,Personne* p2);
+bool sontFrereSoeur(Personne* p1, Personne* p2);
+bool estAncetre (Personne* a, Personne* b);

@@ -1,6 +1,7 @@
 #include "type_def.h"
 #include "utilitaires.h"
 #include <iostream>
+#include <cassert>
 using namespace std;
 
 //QUESTION 1
@@ -71,19 +72,29 @@ void affichage (Personne* p){
 }
 
 //QUESTION 5
-// bool memePersonne(Personne* p1,Personne* p2){
-//     if(p1-> nom == p2->nom){
-        
-//     }
-//     return false;
-// }
-// bool sont_freres_soeur (Personne* p1, Personne* p2){
-//     if (!memePersonne(p1,p2)){
-//         if (p1->pere == p2->pere && p1->mere == p2->mere){
-//         return true;
-//         }
-//         else{
-//             return false;
-//         }  
-//     }
-// }
+bool memePersonne(Personne* p1,Personne* p2){
+    if(p1-> nom == p2->nom && p1->prenom == p2->prenom && p1->naissance == p2->naissance && p1->sexe == p2-> sexe){
+        return true;
+    }
+    return false;
+}
+
+bool sontFrereSoeur(Personne* p1, Personne* p2){
+    if (!memePersonne(p1,p2)){
+        if (p1->pere == p2->pere && p1->mere == p2->mere){
+        return true;
+        }
+        else{
+            return false;
+        }  
+    }
+}
+
+// Question 6
+bool estAncetre (Personne* a, Personne* b)
+{
+    assert()
+    // Si personne b est l'ancetre de personne a
+    //if ()
+    return true;
+}

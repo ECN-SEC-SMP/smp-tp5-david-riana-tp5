@@ -23,5 +23,16 @@ void mariage(Personne* p1,Personne* p2){
 //QUESTION 3 
 
 void affichage (Personne* p){
+    if (p->sexe == 1){
+        cout << " Monsieur ";
+    } 
+    else{
+        cout << "Madame ";
+    }
+    cout << "La personne est "<< p-> prenom << " " << p-> nom << endl;
+    cout << "Elle est née en "<< p->naissance << endl;
 
+    if (p->conjoint != nullptr){
+        cout << "Elle est l'épouse de "<< p->prenom << " "<< p->nom << endl;
+    }
 }

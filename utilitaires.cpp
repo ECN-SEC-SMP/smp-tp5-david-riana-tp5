@@ -23,7 +23,7 @@ void mariage(Personne* p1,Personne* p2){
     p2-> conjoint = p1;
 }
 
-//QUESTION 3 
+//QUESTION 3 ET 4
 
 void affichage (Personne* p){
     if (p->sexe == 1){
@@ -54,8 +54,36 @@ void affichage (Personne* p){
         
         cout << " est l'épouse de "<< p->conjoint->prenom << " "<< p->conjoint->nom << endl;
     }
+
+    if (p->pere == nullptr)
+    {
+        cout << "   De père INCONNU" << endl;
+    } else {
+        cout << "   De père " << p->pere->prenom << " " << p->pere->nom << endl;
+    }
+
+    if (p->mere == nullptr)
+    {
+        cout << "   De mère INCONNUE" << endl;
+    } else {
+        cout << "   De mère " << p->mere->prenom << " " << p->mere->nom << endl; 
+    }
 }
 
-//QUESTION 4
-
-
+//QUESTION 5
+// bool memePersonne(Personne* p1,Personne* p2){
+//     if(p1-> nom == p2->nom){
+        
+//     }
+//     return false;
+// }
+// bool sont_freres_soeur (Personne* p1, Personne* p2){
+//     if (!memePersonne(p1,p2)){
+//         if (p1->pere == p2->pere && p1->mere == p2->mere){
+//         return true;
+//         }
+//         else{
+//             return false;
+//         }  
+//     }
+// }

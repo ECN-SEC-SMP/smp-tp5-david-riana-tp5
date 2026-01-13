@@ -2,7 +2,7 @@
 #include <string>
 using namespace std;
 
-struct personne
+struct Personne
 {
     string nom;
     string prenom;

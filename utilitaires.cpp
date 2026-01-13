@@ -144,8 +144,40 @@ int nbMembres (Personne* p){
 }
 
 // QUESTION 9
+// TODO: à debugger
+bool mariagePossible(Personne* a, Personne* b)
+{
+    return !estAncetre(a, b) && !estAncetre(b, a) && !sontFrereSoeur(b, a);
+}
 
-// bool mariagePossible(Personne* a, Personne* b)
-// {
-//  if ()
-// }
+//QUESTION 10
+
+void affichageArbre(Personne* personne){
+    if (personne != nullptr){
+        if (personne->mere == nullptr && personne->pere == nullptr){
+                if (personne->sexe == 1){
+                    cout << "Monsieur ";
+                } 
+                else{
+                    cout << "Madame ";
+                }
+                cout << personne-> prenom << " " << personne-> nom << endl;
+        }
+        else{
+            cout << "               ";
+            if (personne->sexe == 1){
+                    cout << "Monsieur ";
+                } 
+                else{
+                    cout << "Madame ";
+                }
+                cout << personne-> prenom << " " << personne-> nom << endl;
+            affichageArbre(personne->pere);
+            cout << "                            ";
+            affichageArbre(personne->mere);
+            cout << "  "<< endl;
+        }
+    }
+}
+
+// QUESTION 11

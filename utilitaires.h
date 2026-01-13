@@ -11,3 +11,5 @@ bool sontFrereSoeur(Personne* p1, Personne* p2);
 bool estAncetre (Personne* a, Personne* b);
 int nbGenerations (Personne* pers);
 int nbMembres (Personne* p);
+bool mariagePossible(Personne* a, Personne* b);
+void affichageArbre(Personne* personne);

@@ -65,7 +65,6 @@ int main() {
     cout << std::boolalpha << estAncetre(riana, david) << endl;
     cout << std::boolalpha << estAncetre(david, riana) << endl;
 
-
     // ===== Test question 7 =====
     cout << "Test question 7" << endl;
     cout << "Il y a " << nbGenerations(riana) << " générations."<< endl;
@@ -73,6 +72,18 @@ int main() {
     // ===== Test question 8 =====
     cout << "Test question 8" << endl;
     cout << "Il y a " << nbMembres(riana) << " personnes."<< endl;
+
+    // ==== Test question 9 =====
+    cout << "Test question 9" << endl;
     
+    // cout << "Mariage possible" << endl;
+    // cout << std::boolalpha << mariagePossible(riana, tom) << endl;
+
+    // cout << "Mariage pas possible" << endl;
+    // cout << std::boolalpha << mariagePossible(riana, angelique) << endl;
+    
+    // ==== Test question 10 =====
+    cout << "Test question 10" << endl;
+    affichageArbre(riana);
     return 0;
 }

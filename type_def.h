@@ -9,4 +9,6 @@ struct Personne
     int naissance;
     int sexe;
     Personne* conjoint;
+    Personne* pere;
+    Personne* mere;
 };

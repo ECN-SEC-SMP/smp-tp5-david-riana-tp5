@@ -76,11 +76,11 @@ int main() {
     // ==== Test question 9 =====
     cout << "Test question 9" << endl;
     
-    // cout << "Mariage possible" << endl;
-    // cout << std::boolalpha << mariagePossible(riana, tom) << endl;
+    cout << "Mariage possible" << endl;
+    cout << std::boolalpha << mariagePossible(riana, tom) << endl;
 
-    // cout << "Mariage pas possible" << endl;
-    // cout << std::boolalpha << mariagePossible(riana, angelique) << endl;
+    cout << "Mariage pas possible" << endl;
+    cout << std::boolalpha << mariagePossible(riana, angelique) << endl;
     
     // ==== Test question 10 =====
     cout << "Test question 10" << endl;

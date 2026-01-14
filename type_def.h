@@ -11,4 +11,5 @@ struct Personne
     Personne* conjoint;
     Personne* pere;
     Personne* mere;
+    int id;
 };

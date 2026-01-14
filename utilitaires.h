@@ -13,3 +13,4 @@ int nbGenerations (Personne* pers);
 int nbMembres (Personne* p);
 bool mariagePossible(Personne* a, Personne* b);
 void affichageArbre(Personne* personne);
+int sauvegarderArbre(string nom_fichier);

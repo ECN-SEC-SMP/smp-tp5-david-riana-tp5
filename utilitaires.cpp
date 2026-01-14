@@ -3,11 +3,14 @@
 #include <iostream>
 #include <cassert>
 #include <cmath>
+#include <fstream>
 using namespace std;
 
 //QUESTION 1
 
 Personne* creerPersonne(string nom,string prenom,int naissance,int sexe,Personne* conjoint){
+    static int id = 0;
+
     Personne* nv   = new Personne;
     nv->nom        = nom;
     nv-> prenom    = prenom;
@@ -16,6 +19,9 @@ Personne* creerPersonne(string nom,string prenom,int naissance,int sexe,Personne
     nv->conjoint   = conjoint;
     nv->pere       = nullptr;
     nv->mere       = nullptr;
+    nv->id         = id;
+
+    id++;
     return nv;
 }
 
@@ -89,20 +95,36 @@ bool sontFrereSoeur(Personne* p1, Personne* p2){
             return false;
         }  
     }
+    return false;
 }
 
 // QUESTION 6
 bool estAncetre (Personne* a, Personne* b)
 {
+    assert(b != nullptr);
+    assert(a != nullptr);
+
     // Si personne b est l'ancetre de personne a
     bool flagEstAncetreMere = false;
     bool flagEstAncetrePere = false;
-    if (a->pere == nullptr && a->mere == nullptr)
+
+    if (a == nullptr || b == nullptr)
     {
         return false;
-    } 
-
+    } else if (a->pere == nullptr && a->mere == nullptr)
+    {
+        return false;
+    }
+    
     // TODO: Faire avec les tests avec a->pere == nullptr ou a->mere == nullptr
+    else if (a->pere == nullptr && a->mere != nullptr)
+    {
+        flagEstAncetreMere = estAncetre(a->mere, b);
+    }
+    else if (a->pere != nullptr && a->mere == nullptr) 
+    {
+        flagEstAncetreMere = estAncetre(a->mere, b);
+    }
     else if(memePersonne(a->pere, b)){
         return true;
     }
@@ -147,11 +169,20 @@ int nbMembres (Personne* p){
 // TODO: à debugger
 bool mariagePossible(Personne* a, Personne* b)
 {
-    return !estAncetre(a, b) && !estAncetre(b, a) && !sontFrereSoeur(b, a);
+    if (estAncetre(a, b))
+    {
+        return false;
+    } else if (estAncetre(b, a))
+    {
+        return false;
+    } else if (sontFrereSoeur(b, a)) 
+    {
+        return false;
+    }
+    return true;
 }
 
 //QUESTION 10
-
 void affichageArbre(Personne* personne){
     if (personne != nullptr){
         if (personne->mere == nullptr && personne->pere == nullptr){
@@ -181,3 +212,14 @@ void affichageArbre(Personne* personne){
 }
 
 // QUESTION 11
+int sauvegarderArbre(string nom_fichier)
+{
+    ofstream fluxFichier(nom_fichier);
+
+    if (fluxFichier)
+    {
+        
+    } else {
+        cout << "Impossible d'ouvrir le fichier : " << nom_fichier << endl;
+    }
+}

@@ -211,7 +211,7 @@ void affichageArbre(Personne* personne){
 }
 
 // QUESTION 11
-int sauvegarderArbre(string nom_fichier, Personne *p)
+void sauvegarderArbre(string nom_fichier, Personne *p)
 {
     ofstream fluxFichier(nom_fichier);
     vector<Personne> listeDeArbre;
@@ -231,8 +231,8 @@ void vectorisationArbre(vector<Personne>& ps, Personne *p)
 {
     if (p != nullptr) {
         ps.push_back(*p);
-        vectorisationArbre(ps, p->mere);
         vectorisationArbre(ps, p->pere);
+        vectorisationArbre(ps, p->mere);
         vectorisationArbre(ps, p->conjoint);
     }
 }

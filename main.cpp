@@ -1,4 +1,4 @@
-#include <assert.h>
+#include <cassert>
 #include <iostream>
 #include <sstream>
 
@@ -102,7 +102,7 @@ int main() {
     // === Test question 11 ===
     // Test serialisePersonne
     assert(serialisePersonne(david) == "0 David PROSPERIN 2004 1 -1 -1 -1");
-    assert(serialisePersonne(riana) == "1 Riana CHAUVET-RAHERIMALALA 2006 2 0 -1 2");
+    assert(serialisePersonne(riana) == "1 Riana CHAUVET-RAHERIMALALA 2006 2 0 4 2");
     assert(serialisePersonne(tom) == "2 Tom LOMBE 2005 1 -1 -1 -1");
     assert(serialisePersonne(angelique) == "3 Angélique PAROIS 2005 2 0 -1 -1");
 
@@ -142,7 +142,7 @@ int main() {
 
      assert(memePersonne(&listeRiana[0], riana) &&
             memePersonne(&listeRiana[1], david) &&
-            memePersonne(&listeRiana[2] , tom));
+            memePersonne(&listeRiana[2] , marceline));
 
      // Test sauvegardeAbre
      cout << "sauvegardeAbre" << endl;
@@ -150,8 +150,12 @@ int main() {
 
      string contenuArbreRiana = lireFichier("./arbreRiana.txt");
      ostringstream chaineAttendu;
-     chaineAttendu << "1 Riana CHAUVET-RAHERIMALALA 2006 2 0 -1 2\n";
+     chaineAttendu << "1 Riana CHAUVET-RAHERIMALALA 2006 2 0 4 2\n";
      chaineAttendu << "0 David PROSPERIN 2004 1 -1 -1 -1\n";
+     chaineAttendu << "4 Marceline GLIPARD 1985 2 5 -1 -1\n";
+     chaineAttendu << "5 Francis GLIPARD 1930 1 -1 6 -1\n";
+     chaineAttendu << "6 Francine GLIPARD 1930 2 7 -1 -1\n";
+     chaineAttendu << "7 Marcel IPARD 1930 1 -1 -1 -1\n";
      chaineAttendu << "2 Tom LOMBE 2005 1 -1 -1 -1\n";
 
      assert(contenuArbreRiana == chaineAttendu.str());

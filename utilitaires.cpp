@@ -104,211 +104,202 @@ bool sontFrereSoeur(Personne* p1, Personne* p2){
 // QUESTION 6
 bool estAncetre (Personne* a, Personne* b)
 {
-    assert(b != nullptr);
-    assert(a != nullptr);
-
-    // Si personne b est l'ancetre de personne a
+    //Initialisation de flag pour tester par branche
     bool flagEstAncetreMere = false;
     bool flagEstAncetrePere = false;
 
+    //Test si les personnes existent
     if (a == nullptr || b == nullptr)
     {
         return false;
-    } else if (a->pere == nullptr && a->mere == nullptr)
+    } 
+
+    //Teste si la personne est orpheline
+    else if (a->pere == nullptr && a->mere == nullptr)
     {
         return false;
     }
-    
-    // TODO: Faire avec les tests avec a->pere == nullptr ou a->mere == nullptr
-    else if (a->pere == nullptr && a->mere != nullptr)
+
+    //Teste si la mèTeste si la mere de a est la personne recherchéere de a est la personne recherchée
+    else if (a->pere == nullptr && memePersonne(a->mere,b))
     {
-        flagEstAncetreMere = estAncetre(a->mere, b);
-    }
-    else if (a->pere != nullptr && a->mere == nullptr) 
-    {
-        flagEstAncetreMere = estAncetre(a->mere, b);
-    }
-    else if(memePersonne(a->pere, b)){
         return true;
     }
-    else if (memePersonne(a->mere, b)){
+    //Teste si le père de a est la personne recherchée
+    else if (memePersonne(a->pere,b) && a->mere == nullptr) 
+    {
         return true;
-    } 
+    }
     else{
         flagEstAncetreMere = estAncetre(a->mere, b);
         flagEstAncetrePere = estAncetre(a->pere, b);
-        if (flagEstAncetreMere || flagEstAncetrePere){
-            return true;
-        }
-        else{
-            return false;
-        }
+        return (flagEstAncetreMere || flagEstAncetrePere);
     }
 }
 
-//QUESTION 7
-int nbGenerations (Personne* pers){
-    if (pers == nullptr){
-        return 0;
-    }
-    else{
-        return 1+ max(nbGenerations(pers->pere),nbGenerations(pers->mere));
-    }
-}
+// //QUESTION 7
+// int nbGenerations (Personne* pers){
+//     if (pers == nullptr){
+//         return 0;
+//     }
+//     else{
+//         return 1+ max(nbGenerations(pers->pere),nbGenerations(pers->mere));
+//     }
+// }
     
 
-//QUESTION 8
+// //QUESTION 8
 
-int nbMembres (Personne* p){
-    if(p == nullptr){
-        return 0;
-    } 
-    else{
-        return 1 + nbMembres(p->pere) + nbMembres(p->mere);
-    }
-}
+// int nbMembres (Personne* p){
+//     if(p == nullptr){
+//         return 0;
+//     } 
+//     else{
+//         return 1 + nbMembres(p->pere) + nbMembres(p->mere);
+//     }
+// }
 
-// QUESTION 9
-// TODO: à debugger
-bool mariagePossible(Personne* a, Personne* b)
-{
-    if (estAncetre(a, b))
-    {
-        return false;
-    } else if (estAncetre(b, a))
-    {
-        return false;
-    } else if (sontFrereSoeur(b, a)) 
-    {
-        return false;
-    }
-    return true;
-}
+// // QUESTION 9
+// // TODO: à debugger
+// bool mariagePossible(Personne* a, Personne* b)
+// {
+//     if (estAncetre(a, b))
+//     {
+//         return false;
+//     } else if (estAncetre(b, a))
+//     {
+//         return false;
+//     } else if (sontFrereSoeur(b, a)) 
+//     {
+//         return false;
+//     }
+//     return true;
+// }
 
-//QUESTION 10
-void affichageArbre(Personne* personne){
-    if (personne != nullptr){
-        if (personne->mere == nullptr && personne->pere == nullptr){
-                if (personne->sexe == 1){
-                    cout << "Monsieur ";
-                } 
-                else{
-                    cout << "Madame ";
-                }
-                cout << personne-> prenom << " " << personne-> nom << endl;
-        }
-        else{
-            cout << "               ";
-            if (personne->sexe == 1){
-                    cout << "Monsieur ";
-                } 
-                else{
-                    cout << "Madame ";
-                }
-                cout << personne-> prenom << " " << personne-> nom << endl;
-            affichageArbre(personne->pere);
-            cout << "                            ";
-            affichageArbre(personne->mere);
-            cout << "  "<< endl;
-        }
-    }
-}
+// //QUESTION 10
+// void affichageArbre(Personne* personne){
+//     if (personne != nullptr){
+//         if (personne->mere == nullptr && personne->pere == nullptr){
+//                 if (personne->sexe == 1){
+//                     cout << "Monsieur ";
+//                 } 
+//                 else{
+//                     cout << "Madame ";
+//                 }
+//                 cout << personne-> prenom << " " << personne-> nom << endl;
+//         }
+//         else{
+//             cout << "               ";
+//             if (personne->sexe == 1){
+//                     cout << "Monsieur ";
+//                 } 
+//                 else{
+//                     cout << "Madame ";
+//                 }
+//                 cout << personne-> prenom << " " << personne-> nom << endl;
+//             affichageArbre(personne->pere);
+//             cout << "                            ";
+//             affichageArbre(personne->mere);
+//             cout << "  "<< endl;
+//         }
+//     }
+// }
 
-// QUESTION 11
-int sauvegarderArbre(string nom_fichier, Personne *p)
-{
-    ofstream fluxFichier(nom_fichier);
-    vector<Personne> listeDeArbre;
-    vectorisationArbre(listeDeArbre, p);
+// // QUESTION 11
+// int sauvegarderArbre(string nom_fichier, Personne *p)
+// {
+//     ofstream fluxFichier(nom_fichier);
+//     vector<Personne> listeDeArbre;
+//     vectorisationArbre(listeDeArbre, p);
 
-    if (fluxFichier)
-    {
-        for(const Personne& personne : listeDeArbre)
-            fluxFichier << serialisePersonne(&personne) << endl;
-    } else {
-        cout << "Impossible d'ouvrir le fichier : " << nom_fichier << endl;
-    }
-}
-
-
-void vectorisationArbre(vector<Personne>& ps, Personne *p)
-{
-    if (p != nullptr) {
-        affichage(p);
-        ps.push_back(*p);
-        vectorisationArbre(ps, p->mere);
-        vectorisationArbre(ps, p->pere);
-        vectorisationArbre(ps, p->conjoint);
-    }
-}
+//     if (fluxFichier)
+//     {
+//         for(const Personne& personne : listeDeArbre)
+//             fluxFichier << serialisePersonne(&personne) << endl;
+//     } else {
+//         cout << "Impossible d'ouvrir le fichier : " << nom_fichier << endl;
+//     }
+// }
 
 
-string serialisePersonne(const Personne *p)
-{
-    /*
-     si x n'existe pas alors x = -1
+// void vectorisationArbre(vector<Personne>& ps, Personne *p)
+// {
+//     if (p != nullptr) {
+//         affichage(p);
+//         ps.push_back(*p);
+//         vectorisationArbre(ps, p->mere);
+//         vectorisationArbre(ps, p->pere);
+//         vectorisationArbre(ps, p->conjoint);
+//     }
+// }
 
-     <id unique> <prenom> <nom> <naissance> <sexe> <pere> <mere> <conjoint>
-    - id       = x
-    - pere     = id
-    - mere     = id
-    - conjoint = id
-    - nom      = string
-    - prenom   = string
-    - naissance= int
-    - sexe     = int
-    */
 
-    ostringstream oss;
+// string serialisePersonne(const Personne *p)
+// {
+//     /*
+//      si x n'existe pas alors x = -1
 
-    oss << p->id << " " << p->prenom << " " << p->nom << " " << p->naissance << " " << p->sexe << " ";
-    if (p->pere == nullptr) {
-        oss << "-1";
-    } else {
-        oss << p->pere->id;
-    }
-    oss << " ";
-    if (p->mere == nullptr) {
-        oss << "-1";
-    } else {
-        oss << p->mere->id;
-    }
-    oss << " ";
-    if (p->conjoint == nullptr) {
-        oss << "-1";
-    } else {
-        oss << p->conjoint->id;
-    }
+//      <id unique> <prenom> <nom> <naissance> <sexe> <pere> <mere> <conjoint>
+//     - id       = x
+//     - pere     = id
+//     - mere     = id
+//     - conjoint = id
+//     - nom      = string
+//     - prenom   = string
+//     - naissance= int
+//     - sexe     = int
+//     */
 
-    return oss.str();
-}
+//     ostringstream oss;
 
-Personne* deserialisePersonne(const string& p)
-{
-    Personne* nouvPersone = new Personne();
-    istringstream iss(p);
+//     oss << p->id << " " << p->prenom << " " << p->nom << " " << p->naissance << " " << p->sexe << " ";
+//     if (p->pere == nullptr) {
+//         oss << "-1";
+//     } else {
+//         oss << p->pere->id;
+//     }
+//     oss << " ";
+//     if (p->mere == nullptr) {
+//         oss << "-1";
+//     } else {
+//         oss << p->mere->id;
+//     }
+//     oss << " ";
+//     if (p->conjoint == nullptr) {
+//         oss << "-1";
+//     } else {
+//         oss << p->conjoint->id;
+//     }
 
-    iss >> nouvPersone->id;
-    iss >> nouvPersone->prenom;
-    iss >> nouvPersone->nom;
-    iss >> nouvPersone->naissance;
-    iss >> nouvPersone->sexe;
+//     return oss.str();
+// }
 
-    iss >> nouvPersone->pereId;
-    iss >> nouvPersone->mereId;
-    iss >> nouvPersone->conjointId;
+// Personne* deserialisePersonne(const string& p)
+// {
+//     Personne* nouvPersone = new Personne();
+//     istringstream iss(p);
 
-    return nouvPersone;
-}
+//     iss >> nouvPersone->id;
+//     iss >> nouvPersone->prenom;
+//     iss >> nouvPersone->nom;
+//     iss >> nouvPersone->naissance;
+//     iss >> nouvPersone->sexe;
 
-string lireFichier(const string& nomFichier)
-{
-    ifstream fichier(nomFichier);
-    string ligne, contenu;
+//     iss >> nouvPersone->pereId;
+//     iss >> nouvPersone->mereId;
+//     iss >> nouvPersone->conjointId;
 
-    while (getline(fichier, ligne)) {
-        contenu += ligne + "\n";
-    }
+//     return nouvPersone;
+// }
 
-    return contenu;
-}
+// string lireFichier(const string& nomFichier)
+// {
+//     ifstream fichier(nomFichier);
+//     string ligne, contenu;
+
+//     while (getline(fichier, ligne)) {
+//         contenu += ligne + "\n";
+//     }
+
+//     return contenu;
+// }

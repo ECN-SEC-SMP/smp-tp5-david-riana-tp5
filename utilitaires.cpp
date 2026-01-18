@@ -120,7 +120,7 @@ bool estAncetre (Personne* a, Personne* b)
         return false;
     }
 
-    //Teste si la mèTeste si la mere de a est la personne recherchéere de a est la personne recherchée
+    //Teste si la mère de a est la personne recherchée
     else if (a->pere == nullptr && memePersonne(a->mere,b))
     {
         return true;
@@ -179,6 +179,7 @@ bool mariagePossible(Personne* a, Personne* b)
 
 //QUESTION 10
 void affichageArbre(Personne* personne){
+    
     if (personne != nullptr){
         if (personne->mere == nullptr && personne->pere == nullptr){
                 if (personne->sexe == 1){
@@ -188,20 +189,23 @@ void affichageArbre(Personne* personne){
                     cout << "Madame ";
                 }
                 cout << personne-> prenom << " " << personne-> nom << endl;
+                cout << " De parents INCONNUS" << endl;
         }
         else{
-            cout << "               ";
             if (personne->sexe == 1){
                     cout << "Monsieur ";
-                }
-                else{
-                    cout << "Madame ";
-                }
-                cout << personne-> prenom << " " << personne-> nom << endl;
+            }
+            else{
+                cout << "Madame ";
+            }
+            cout << personne-> prenom << " " << personne-> nom << endl;
+            cout << " De parents (père)" << endl;
             affichageArbre(personne->pere);
-            cout << "                            ";
+            
+            cout << " De parents (mère)" << endl;
             affichageArbre(personne->mere);
             cout << "  "<< endl;
+            
         }
     }
 }

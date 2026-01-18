@@ -13,6 +13,9 @@ int main() {
     Personne* tom = creerPersonne("LOMBE","Tom",2005,1,nullptr);
     Personne* angelique = creerPersonne("PAROIS", "Angélique", 2005, 2,nullptr);
     Personne* marceline = creerPersonne("GLIPARD", "Marceline", 1985, 2,nullptr);
+    Personne* francis = creerPersonne("GLIPARD", "Francis", 1930, 1,nullptr);
+    Personne* francine = creerPersonne("GLIPARD", "Francine", 1930, 2,nullptr);
+    Personne* marcel = creerPersonne("IPARD", "Marcel", 1930, 1,nullptr);
     affichage(david);
     mariage(riana,tom);
     affichage(riana);
@@ -90,6 +93,10 @@ int main() {
     
     // ==== Test question 10 =====
     cout << "Test question 10" << endl;
+    riana->mere = marceline;
+    marceline->pere = francis;
+    francis->mere = francine;
+    francine->pere = marcel;
     affichageArbre(riana);
 
     // === Test question 11 ===

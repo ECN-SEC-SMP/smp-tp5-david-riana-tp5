@@ -4,11 +4,12 @@
 #include <cassert>
 #include <cmath>
 #include <fstream>
+#include <sstream>
 using namespace std;
 
 //QUESTION 1
 
-Personne* creerPersonne(string nom,string prenom,int naissance,int sexe,Personne* conjoint){
+Personne* creerPersonne(string nom, string prenom, int naissance, int sexe, Personne* conjoint){
     static int id = 0;
 
     Personne* nv   = new Personne;
@@ -20,6 +21,9 @@ Personne* creerPersonne(string nom,string prenom,int naissance,int sexe,Personne
     nv->pere       = nullptr;
     nv->mere       = nullptr;
     nv->id         = id;
+    nv->pereId     = -1;
+    nv->mereId     = -1;
+    nv->conjointId = -1;
 
     id++;
     return nv;
@@ -212,14 +216,92 @@ void affichageArbre(Personne* personne){
 }
 
 // QUESTION 11
-int sauvegarderArbre(string nom_fichier)
+// TODO: finir sauvegarderArbre
+int sauvegarderArbre(string nom_fichier, const Personne *p)
 {
     ofstream fluxFichier(nom_fichier);
 
     if (fluxFichier)
     {
-        
+
     } else {
         cout << "Impossible d'ouvrir le fichier : " << nom_fichier << endl;
     }
+}
+
+// TODO: boucle infinie
+void vectorisationArbre(vector<Personne>& ps, Personne *p)
+{
+    if (p != nullptr) {
+        if (p->pere == nullptr &&
+            p->mere == nullptr &&
+            p->conjoint == nullptr)
+        {
+            affichage(p);
+            ps.push_back(*p);
+        } else {
+            vectorisationArbre(ps, p->mere);
+            vectorisationArbre(ps, p->pere);
+            vectorisationArbre(ps, p->conjoint);
+        }
+    }
+}
+
+
+string serialisePersonne(const Personne *p)
+{
+    /*
+     si x n'existe pas alors x = -1
+
+     <id unique> <prenom> <nom> <naissance> <sexe> <pere> <mere> <conjoint>
+    - id       = x
+    - pere     = id
+    - mere     = id
+    - conjoint = id
+    - nom      = string
+    - prenom   = string
+    - naissance= int
+    - sexe     = int
+    */
+
+    ostringstream oss;
+
+    oss << p->id << " " << p->prenom << " " << p->nom << " " << p->naissance << " " << p->sexe << " ";
+    if (p->pere == nullptr) {
+        oss << "-1";
+    } else {
+        oss << p->pere->id;
+    }
+    oss << " ";
+    if (p->mere == nullptr) {
+        oss << "-1";
+    } else {
+        oss << p->mere->id;
+    }
+    oss << " ";
+    if (p->conjoint == nullptr) {
+        oss << "-1";
+    } else {
+        oss << p->conjoint->id;
+    }
+
+    return oss.str();
+}
+
+Personne* deserialisePersonne(const string& p)
+{
+    Personne* nouvPersone = new Personne();
+    istringstream iss(p);
+
+    iss >> nouvPersone->id;
+    iss >> nouvPersone->prenom;
+    iss >> nouvPersone->nom;
+    iss >> nouvPersone->naissance;
+    iss >> nouvPersone->sexe;
+
+    iss >> nouvPersone->pereId;
+    iss >> nouvPersone->mereId;
+    iss >> nouvPersone->conjointId;
+
+    return nouvPersone;
 }

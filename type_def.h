@@ -12,4 +12,7 @@ struct Personne
     Personne* pere;
     Personne* mere;
     int id;
+    int pereId;
+    int mereId;
+    int conjointId;
 };

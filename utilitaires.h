@@ -13,4 +13,7 @@ int nbGenerations (Personne* pers);
 int nbMembres (Personne* p);
 bool mariagePossible(Personne* a, Personne* b);
 void affichageArbre(Personne* personne);
-int sauvegarderArbre(string nom_fichier);
+int sauvegarderArbre(string nom_fichier, const Personne *p);
+string serialisePersonne(const Personne *p);
+Personne* deserialisePersonne(const string& p);
+void vectorisationArbre(vector<Personne>& ps, Personne *p);

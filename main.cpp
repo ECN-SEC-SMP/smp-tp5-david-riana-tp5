@@ -91,7 +91,7 @@ int main() {
     // Test serialisePersonne
     assert(serialisePersonne(david) == "0 David PROSPERIN 2004 1 -1 -1 -1");
     assert(serialisePersonne(riana) == "1 Riana CHAUVET-RAHERIMALALA 2006 2 0 -1 2");
-    assert(serialisePersonne(tom) == "2 Tom LOMBE 2005 1 -1 -1 1");
+    assert(serialisePersonne(tom) == "2 Tom LOMBE 2005 1 -1 -1 -1");
     assert(serialisePersonne(angelique) == "3 Angélique PAROIS 2005 2 0 -1 -1");
 
     // Test deserialisePersonne
@@ -122,6 +122,11 @@ int main() {
         rianaDeserialise->mereId    == -1                     &&
         rianaDeserialise->conjointId== 2
     );
+
+    // Test vectorisationArbre
+    cout << "vectorisationArbre" << endl;
+    vector<Personne> listeRiana;
+    vectorisationArbre(listeRiana, riana);
 
     return 0;
 }

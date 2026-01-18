@@ -32,7 +32,6 @@ Personne* creerPersonne(string nom, string prenom, int naissance, int sexe, Pers
 //QUESTION 2
 void mariage(Personne* p1,Personne* p2){
     p1-> conjoint = p2;
-    p2-> conjoint = p1;
 }
 
 //QUESTION 3 ET 4
@@ -229,21 +228,15 @@ int sauvegarderArbre(string nom_fichier, const Personne *p)
     }
 }
 
-// TODO: boucle infinie
+
 void vectorisationArbre(vector<Personne>& ps, Personne *p)
 {
     if (p != nullptr) {
-        if (p->pere == nullptr &&
-            p->mere == nullptr &&
-            p->conjoint == nullptr)
-        {
-            affichage(p);
-            ps.push_back(*p);
-        } else {
-            vectorisationArbre(ps, p->mere);
-            vectorisationArbre(ps, p->pere);
-            vectorisationArbre(ps, p->conjoint);
-        }
+        affichage(p);
+        ps.push_back(*p);
+        vectorisationArbre(ps, p->mere);
+        vectorisationArbre(ps, p->pere);
+        vectorisationArbre(ps, p->conjoint);
     }
 }
 

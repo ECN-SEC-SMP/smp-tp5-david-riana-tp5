@@ -18,3 +18,5 @@ string serialisePersonne(const Personne *p);
 Personne* deserialisePersonne(const string& p);
 void vectorisationArbre(vector<Personne>& ps, Personne *p);
 string lireFichier(const string& nomFichier);
+Personne* chercherPersonneParId(const vector<Personne*>& ps, int id);
+Personne* chargerArbre(const string& nomFichier);

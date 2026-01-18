@@ -226,7 +226,6 @@ int sauvegarderArbre(string nom_fichier, Personne *p)
 void vectorisationArbre(vector<Personne>& ps, Personne *p)
 {
     if (p != nullptr) {
-        affichage(p);
         ps.push_back(*p);
         vectorisationArbre(ps, p->mere);
         vectorisationArbre(ps, p->pere);
@@ -303,4 +302,42 @@ Personne* deserialisePersonne(const string& p)
      }
 
      return contenu;
+}
+
+Personne* chercherPersonneParId(const vector<Personne*>& ps, const int id)
+{
+    for (Personne* p : ps) {
+        if (p != nullptr && p->id == id) {
+            return p;
+        }
+    }
+    return nullptr;
+}
+
+// nomFichier le nom du fichier à charger
+// retourne la tête de l'arbre
+Personne* chargerArbre(const string& nomFichier)
+{
+    ifstream fichier(nomFichier);
+    string ligne;
+
+    vector<Personne*> listePersonnes;
+
+    if (!fichier) {
+        cout << "Chargement impossible du fichier : " << nomFichier << endl;
+        return nullptr;
+    }
+
+    while (getline(fichier, ligne)) {
+        Personne* p = deserialisePersonne(ligne);
+        listePersonnes.push_back(p);
+    }
+
+    for (Personne* p : listePersonnes) {
+        p->pere     = chercherPersonneParId(listePersonnes, p->pereId);
+        p->mere     = chercherPersonneParId(listePersonnes, p->mereId);
+        p->conjoint = chercherPersonneParId(listePersonnes, p->conjointId);
+    }
+
+    return listePersonnes.empty() ? nullptr : listePersonnes[0];
 }

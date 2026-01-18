@@ -148,6 +148,42 @@ int main() {
      chaineAttendu << "2 Tom LOMBE 2005 1 -1 -1 -1\n";
 
      assert(contenuArbreRiana == chaineAttendu.str());
-    
+
+    // Test chercherPersonneParId
+    cout << "chercherPersonneParId" << endl;
+
+    vector<Personne*> listeRiana2 {david, riana, tom};
+
+    // La personne est dans le vector
+    Personne* davidPtr = chercherPersonneParId(listeRiana2, 0);
+
+    assert(davidPtr == listeRiana2[0] && "david est en tête de liste");
+
+    // La personne n'est pas dans le vector
+    Personne* marcelinePtr = chercherPersonneParId(listeRiana2, 4);
+
+    assert(marcelinePtr == nullptr && "marceline n'est pas présente dans le vector listeRiana2");
+
+    // Test chargerArbre
+    cout << "chargerArbre" << endl;
+    Personne* tete = chargerArbre("./arbreRiana.txt");
+
+    assert(
+        tete->prenom    == "Riana"                &&
+        tete->nom       == "CHAUVET-RAHERIMALALA" &&
+        tete->naissance == 2006                   &&
+        tete->sexe      == 2                      &&
+
+        tete->pere->prenom    == "David"          &&
+        tete->pere->nom       == "PROSPERIN"      &&
+        tete->pere->sexe      == 1                &&
+        tete->pere->naissance == 2004             &&
+
+        tete->conjoint->prenom    == "Tom"        &&
+        tete->conjoint->nom       == "LOMBE"      &&
+        tete->conjoint->sexe      == 1            &&
+        tete->conjoint->naissance == 2005
+        );
+
      return 0;
 }

@@ -215,14 +215,16 @@ void affichageArbre(Personne* personne){
 }
 
 // QUESTION 11
-// TODO: finir sauvegarderArbre
-int sauvegarderArbre(string nom_fichier, const Personne *p)
+int sauvegarderArbre(string nom_fichier, Personne *p)
 {
     ofstream fluxFichier(nom_fichier);
+    vector<Personne> listeDeArbre;
+    vectorisationArbre(listeDeArbre, p);
 
     if (fluxFichier)
     {
-
+        for(const Personne& personne : listeDeArbre)
+            fluxFichier << serialisePersonne(&personne) << endl;
     } else {
         cout << "Impossible d'ouvrir le fichier : " << nom_fichier << endl;
     }
@@ -297,4 +299,16 @@ Personne* deserialisePersonne(const string& p)
     iss >> nouvPersone->conjointId;
 
     return nouvPersone;
+}
+
+string lireFichier(const string& nomFichier)
+{
+    ifstream fichier(nomFichier);
+    string ligne, contenu;
+
+    while (getline(fichier, ligne)) {
+        contenu += ligne + "\n";
+    }
+
+    return contenu;
 }

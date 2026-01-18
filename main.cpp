@@ -1,5 +1,7 @@
 #include <assert.h>
 #include <iostream>
+#include <sstream>
+
 #include "utilitaires.h"
 #include "type_def.h"
 
@@ -127,6 +129,22 @@ int main() {
     cout << "vectorisationArbre" << endl;
     vector<Personne> listeRiana;
     vectorisationArbre(listeRiana, riana);
+
+    assert(memePersonne(&listeRiana[0], riana) &&
+           memePersonne(&listeRiana[1], david) &&
+           memePersonne(&listeRiana[2] , tom));
+
+    // Test sauvegardeAbre
+    cout << "sauvegardeAbre" << endl;
+    sauvegarderArbre("./arbreRiana.txt", riana);
+
+    string contenuArbreRiana = lireFichier("./arbreRiana.txt");
+    ostringstream chaineAttendu;
+    chaineAttendu << "1 Riana CHAUVET-RAHERIMALALA 2006 2 0 -1 2\n";
+    chaineAttendu << "0 David PROSPERIN 2004 1 -1 -1 -1\n";
+    chaineAttendu << "2 Tom LOMBE 2005 1 -1 -1 -1\n";
+
+    assert(contenuArbreRiana == chaineAttendu.str());
 
     return 0;
 }

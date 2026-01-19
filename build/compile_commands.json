@@ -1,0 +1,14 @@
+[
+{
+  "directory": "/home/riana/Documents/smp-tp5-david-riana-tp5/build",
+  "command": "/usr/bin/c++   -g -std=gnu++20 -o CMakeFiles/smp_tp5_david_riana_tp5.dir/main.cpp.o -c /home/riana/Documents/smp-tp5-david-riana-tp5/main.cpp",
+  "file": "/home/riana/Documents/smp-tp5-david-riana-tp5/main.cpp",
+  "output": "CMakeFiles/smp_tp5_david_riana_tp5.dir/main.cpp.o"
+},
+{
+  "directory": "/home/riana/Documents/smp-tp5-david-riana-tp5/build",
+  "command": "/usr/bin/c++   -g -std=gnu++20 -o CMakeFiles/smp_tp5_david_riana_tp5.dir/utilitaires.cpp.o -c /home/riana/Documents/smp-tp5-david-riana-tp5/utilitaires.cpp",
+  "file": "/home/riana/Documents/smp-tp5-david-riana-tp5/utilitaires.cpp",
+  "output": "CMakeFiles/smp_tp5_david_riana_tp5.dir/utilitaires.cpp.o"
+}
+]

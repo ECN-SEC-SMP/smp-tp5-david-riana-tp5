@@ -1,0 +1,3 @@
+/home/riana/Documents/smp-tp5-david-riana-tp5/build/CMakeFiles/smp_tp5_david_riana_tp5.dir
+/home/riana/Documents/smp-tp5-david-riana-tp5/build/CMakeFiles/edit_cache.dir
+/home/riana/Documents/smp-tp5-david-riana-tp5/build/CMakeFiles/rebuild_cache.dir
